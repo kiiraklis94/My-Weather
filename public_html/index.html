@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Vue.js</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/jquery-3.1.0.js"></script>
+    <script src="./js/jquery.simpleWeather.js"></script>
+  </head>
+
+  <body>
+    <!--<div class="container">-->
+      <div id="weather">
+        <div class="row">
+          <div class="form-group">
+            <input class="form-control" id="inputField" v-model="newPlace" v-on:keyup.enter="addLocation" placeholder="Write city name and press Enter">
+          </div>
+        </div>
+
+        <div class="row">
+          <div v-for="place in places" >
+
+            <div class="weather-widget col-md-6" data-index="{{ $index }}" data-location="{{ place.location }}">
+              <div  class="panel panel-info">
+
+                <div id="{{ $index }}-heading" class="panel-heading"></div>
+
+                <div id="{{ $index }}-body" class="panel-body">
+
+                  <div id="{{ $index }}-icon" class="col-md-4"></div>
+
+                  <div class="col-md-8">
+
+                    <div class="col-sm-5">
+                      <div class="panel panel-default">
+                        <div id="{{ $index }}-temp" class="panel-body">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-7">
+                      <div class="panel panel-default">
+                        <div id="{{ $index }}-currently" class="panel-body">
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="panel-footer">
+                  <div class="form-group text-right">
+                    <button class="btn btn-danger" v-on:click="removeLocation($index)">Remove</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    <!--</div>-->
+
+
+
+    <footer>
+
+      <script src="./js/vue.js" charset="utf-8"></script>
+      <script src="./js/main.js" charset="utf-8"></script>
+
+      <script>
+$(document).ready(function () {
+    $(".weather-widget").each(function () {
+        var obj = $(this);
+        var index = $(obj).attr("data-index");
+        var loc = $(obj).attr("data-location");
+        
+        $.simpleWeather({
+            location: loc,
+            woeid: '',
+            unit: 'c',
+            success: function (weather) {
+                var heading = '<h2>' + weather.city + ', ' + weather.country + '</h2>';
+                $("#" + index + "-heading").html(heading);
+
+                var icon = '<img src="' + weather.image + '">';
+                $("#" + index + "-icon").html(icon);
+
+                var temp = '<h4>' + weather.temp + ' C' + '</h4>';
+                $("#" + index + "-temp").html(temp);
+
+                var currently = '<h4>' + weather.currently + '</h4>';
+                $("#" + index + "-currently").html(currently);
+            },
+            error: function (error) {
+                $("#" + index + "-heading").html('<h2>' + error + '</h2>');
+            }
+        });
+    });
+
+    $("#inputField").keyup(function (e) {
+        var code = e.which;
+        if (code == 13) {
+            $(".weather-widget").each(function () {
+                var obj = $(this);
+                var index = $(obj).attr("data-index");
+                var loc = $(obj).attr("data-location");
+
+                $.simpleWeather({
+                    location: loc,
+                    woeid: '',
+                    unit: 'c',
+                    success: function (weather) {
+                        var heading = '<h2>' + weather.city + ', ' + weather.country + '</h2>';
+                        $("#" + index + "-heading").html(heading);
+
+                        var icon = '<img src="' + weather.image + '">';
+                        $("#" + index + "-icon").html(icon);
+
+                        var temp = '<h4>' + weather.temp + ' C' + '</h4>';
+                        $("#" + index + "-temp").html(temp);
+
+                        var currently = '<h4>' + weather.currently + '</h4>';
+                        $("#" + index + "-currently").html(currently);
+                    },
+                    error: function (error) {
+                        $("#" + index + "-heading").html('<h2>' + error + '</h2>');
+                    }
+                });
+            });
+        }
+
+
+    });
+
+
+});
+      </script>
+    </footer>
+  </body>
+</html>
