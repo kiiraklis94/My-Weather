@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/jquery-3.1.0.js"></script>
     <script src="./js/jquery.simpleWeather.js"></script>
+    <script src="./js/bootstrap.js"></script>
   </head>
 
   <body>
@@ -33,7 +34,13 @@
 
               <div id="{{ $index }}-body" class="panel-body">
 
-                <div id="{{ $index }}-icon" class="col-md-4"></div>
+                <div class="col-md-4">
+                  <div class="panel panel-default">
+                    <div id="{{ $index }}-icon" class="panel-body">
+                      
+                    </div>
+                  </div>
+                </div>
 
                 <div class="col-md-8">
 
@@ -44,6 +51,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="col-sm-7">
                     <div class="panel panel-default">
                       <div id="{{ $index }}-currently" class="panel-body">
@@ -51,6 +59,66 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="col-md-12">
+
+                    <div class="panel-group" id="{{ $index }}-accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <button class="btn btn-info" role="button" data-toggle="collapse" data-parent="#{{ $index }}-accordion" href="#{{ $index }}-collapse" aria-expanded="false" aria-controls="{{ $index }}-collapse">
+                            Four day forecast
+                          </button>
+                        </div>
+
+                        <div id="{{ $index }}-collapse" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="{{ $index }}-heading">
+                          <div class="panel-body">
+                            <div class="col-md-3">
+                              <div class="panel panel-default">
+                                <div class="panel-heading text-center" id="{{ $index }}-forecast-1-heading">
+
+                                </div>
+                                <div class="panel-body text-center" id="{{$index}}-forecast-1-body">
+                                  
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="panel panel-default">
+                                <div class="panel-heading text-center" id="{{ $index }}-forecast-2-heading">
+
+                                </div>
+                                <div class="panel-body text-center" id="{{$index}}-forecast-2-body">
+
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="panel panel-default">
+                                <div class="panel-heading text-center" id="{{ $index }}-forecast-3-heading">
+
+                                </div>
+                                <div class="panel-body text-center" id="{{$index}}-forecast-3-body">
+
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="panel panel-default">
+                                <div class="panel-heading text-center" id="{{ $index }}-forecast-4-heading">
+
+                                </div>
+                                <div class="panel-body text-center" id="{{$index}}-forecast-4-body">
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
 
                 </div>
 
