@@ -1,0 +1,6 @@
+{
+  "name": "My Weather",
+  "tagline": "A web app that displays weather information for the cities you want. Made with Vue.js",
+  "body": "# My-Weather\r\nA web app that displays weather information for the cities you want. Made with Vue.js\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
